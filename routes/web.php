@@ -3,6 +3,7 @@
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CustomForgotPasswordController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\LoginRegisterController;
@@ -25,6 +26,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
+Route::get('forget-password', [CustomForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [CustomForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [CustomForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [CustomForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('auth/callback/google', [GoogleController::class, 'callbackToGoogle']);

@@ -29,6 +29,31 @@
 
 <body>
     <section class="vh-100 gradient-custom">
+        <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+            <div class="modal-dialog" style="width: 300px;">
+                <div class="modal-content text-center">
+                    <div class="modal-header h5 text-white bg-primary justify-content-center">
+                        Password Reset
+                    </div>
+                    <div class="modal-body px-5">
+                        <p class="py-2">
+                            Enter your email address and we'll send you an email with instructions to reset your
+                            password.
+                        </p>
+                        <div class="form-outline">
+                            <input type="email" id="typeEmail" class="form-control my-3" />
+                            <label class="form-label" for="typeEmail">Email input</label>
+                        </div>
+                        <a href="#" class="btn btn-primary w-100">Reset password</a>
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="" href="#">Login</a>
+                            <a class="" href="#">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -38,6 +63,8 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
                                 {{-- {{ route('login') }} --}}
+
+
                                 <form method="POST" action="{{ route('authenticate') }}">
                                     @csrf
 
@@ -60,8 +87,10 @@
                                         @endif
                                     </div>
                                     {{-- {{ route('password.request') }} --}}
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="">Forgot
-                                            password?</a></p>
+                                    <p class="small mb-5 pb-lg-2">
+                                        <a href="{{ route('forget.password.get') }}">Forgot
+                                            password?</a>
+                                    </p>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                                 </form>
@@ -70,7 +99,8 @@
                                     <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
                                     <a href="#!" class="text-white"><i
                                             class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                                    <a href="{{ url('auth/google') }}"  class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                                    <a href="{{ url('auth/google') }}" class="text-white"><i
+                                            class="fab fa-google fa-lg"></i></a>
                                 </div>
                             </div>
 
@@ -86,6 +116,8 @@
             </div>
         </div>
     </section>
+
+
 
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Add any additional scripts here -->

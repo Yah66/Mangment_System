@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\Api\GradeController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,21 +25,28 @@ use Illuminate\Support\Facades\Route;
 //     // authenticated staff routes here
 //     Route::get('dashboard', [LoginController::class, 'userDashboard']);
 // });
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [RegisterController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    // Route::get('/user', function (Request $request) {
+    //     return $request->user();
+    // });
 
-    Route::get('/posts',
-        [PostController::class, 'index']
-    );
+    // Route::get('/posts',
+    //     [PostController::class, 'index']
+    // );
 
-    Route::get(
+    Route::apiResource(
         '/grades',
-        [GradeController::class, 'index']
+        GradeController::class
     );
 });
+
+// Route::get('conversations',[ConversationController::class,'index']);
+// Route::get('conversations/{id}/messages', [MessageController::class, 'index']);
+// Route::post('messsages',[MessageController::class,'store']);
+// Route::delete('messages/{id}/', [MessageController::class, 'destroy']);
 
 // Route::post('/login', [AuthController::class, 'login']);
 
